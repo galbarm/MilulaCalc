@@ -43,7 +43,6 @@ namespace MilulaCalc
 
         private void OnHotKeyHandler(HotKey hotKey)
         {
-            WindowState = WindowState.Minimized;
             Show();
             WindowState = WindowState.Normal;
         }
