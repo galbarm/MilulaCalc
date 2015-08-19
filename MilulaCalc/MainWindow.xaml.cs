@@ -45,6 +45,7 @@ namespace MilulaCalc
         {
             Show();
             WindowState = WindowState.Normal;
+            Activate();
         }
 
         private void OnStateChanged(object sender, EventArgs e)
