@@ -25,11 +25,20 @@ namespace MilulaCalc
             try
             {
                 var expression = new Expression(_ExpressionBox.Text);
-                _ResultBox.Text = expression.Evaluate().ToString();
+                object resultObj = expression.Evaluate();
+                double result = Convert.ToDouble(resultObj);
+                var str = result.ToString();
+                
+                if (result > 0 & result < 1)
+                {
+                    str += " (" + ((decimal)result).ToString("P") + ")";
+                }
+
+
+                _ResultBox.Text = str;
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -37,7 +46,15 @@ namespace MilulaCalc
         {
             if (e.Key == Key.Enter)
             {
-                Clipboard.SetText(_ResultBox.Text);
+                string str = _ResultBox.Text;
+                int index = _ResultBox.Text.IndexOf("(");
+
+                if (index >= 0)
+                {
+                    str = str.Substring(0, index);
+                }
+
+                Clipboard.SetText(str);
             }
         }
 
