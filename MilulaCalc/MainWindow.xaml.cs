@@ -63,6 +63,7 @@ namespace MilulaCalc
             Show();
             WindowState = WindowState.Normal;
             Activate();
+            _ExpressionBox.SelectAll();
         }
 
         private void OnStateChanged(object sender, EventArgs e)
