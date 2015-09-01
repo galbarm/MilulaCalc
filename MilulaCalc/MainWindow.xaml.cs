@@ -22,6 +22,8 @@ namespace MilulaCalc
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            RemoveRedundantChars();
+
             try
             {
                 var expression = new Expression(_ExpressionBox.Text);
@@ -39,6 +41,20 @@ namespace MilulaCalc
             }
             catch (Exception)
             {
+            }
+        }
+
+        private void RemoveRedundantChars()
+        {
+            string original = _ExpressionBox.Text;
+
+            if (!String.IsNullOrEmpty(original))
+            {
+                original = original.Replace(",", "");
+                original = original.Replace("$", "");
+                original = original.Replace("₪", "");
+                original = original.Replace(" ", "");
+                _ExpressionBox.Text = original;
             }
         }
 
