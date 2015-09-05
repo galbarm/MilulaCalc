@@ -71,6 +71,8 @@ namespace MilulaCalc
                 }
 
                 Clipboard.SetText(str);
+
+                WindowState = WindowState.Minimized;
             }
         }
 
