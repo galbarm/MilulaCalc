@@ -46,17 +46,19 @@ namespace MilulaCalc
 
         private void RemoveRedundantChars()
         {
-            string original = _ExpressionBox.Text;
+            string originalText = _ExpressionBox.Text;
 
-            if (!String.IsNullOrEmpty(original))
+            if (!String.IsNullOrEmpty(originalText))
             {
-                original = original.Replace(",", "");
-                original = original.Replace("$", "");
-                original = original.Replace("₪", "");
-                original = original.Replace(" ", "");
-                _ExpressionBox.Text = original;
+                int originalIndex = _ExpressionBox.CaretIndex;
 
-                _ExpressionBox.CaretIndex = _ExpressionBox.Text.Length;
+                var newText = originalText.Replace(",", "");
+                newText = newText.Replace("$", "");
+                newText = newText.Replace("₪", "");
+                newText = newText.Replace(" ", "");
+                _ExpressionBox.Text = newText;
+
+                _ExpressionBox.CaretIndex = originalIndex - (originalText.Length - newText.Length);
             }
         }
 
