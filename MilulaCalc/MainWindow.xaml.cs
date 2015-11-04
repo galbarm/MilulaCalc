@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -85,6 +86,7 @@ namespace MilulaCalc
             Show();
             WindowState = WindowState.Normal;
             Activate();
+            InputLanguageManager.SetInputLanguage(_ExpressionBox, CultureInfo.CreateSpecificCulture("en"));
             _ExpressionBox.SelectAll();
         }
 
