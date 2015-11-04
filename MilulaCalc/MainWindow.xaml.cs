@@ -21,6 +21,11 @@ namespace MilulaCalc
             new HotKey(Key.Space, KeyModifier.Alt, OnHotKeyHandler);
         }
 
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             RemoveRedundantChars();

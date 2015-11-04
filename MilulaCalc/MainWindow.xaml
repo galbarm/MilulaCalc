@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MilulaCalc"
         mc:Ignorable="d"
-        Title="MilulaCalc" Height="157.103" Width="670.171" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" StateChanged="OnStateChanged">
+        Title="MilulaCalc" Height="157.103" Width="670.171" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" StateChanged="OnStateChanged" Loaded="OnLoaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="445*"/>
