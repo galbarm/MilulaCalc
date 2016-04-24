@@ -35,14 +35,19 @@ namespace MilulaCalc
                 var expression = new Expression(_ExpressionBox.Text);
                 object resultObj = expression.Evaluate();
                 double result = Convert.ToDouble(resultObj);
-                result = Math.Round(result, 2, MidpointRounding.AwayFromZero);
-                var str = result.ToString();
-                
+
+                String str;
+
                 if (result > 0 & result < 1)
                 {
+                    str = result.ToString();
                     str += " (" + ((decimal)result).ToString("P") + ")";
                 }
-
+                else
+                {
+                    result = Math.Round(result, 2, MidpointRounding.AwayFromZero);
+                    str = result.ToString();
+                }
 
                 _ResultBox.Text = str;
             }
