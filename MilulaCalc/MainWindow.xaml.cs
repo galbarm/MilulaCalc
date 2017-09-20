@@ -36,17 +36,11 @@ namespace MilulaCalc
                 object resultObj = expression.Evaluate();
                 double result = Convert.ToDouble(resultObj);
 
-                String str;
+                String str = result.ToString();
 
                 if (result > 0 & result < 1)
                 {
-                    str = result.ToString();
                     str += " (" + ((decimal)result).ToString("P") + ")";
-                }
-                else
-                {
-                    result = Math.Round(result, 2, MidpointRounding.AwayFromZero);
-                    str = result.ToString();
                 }
 
                 _ResultBox.Text = str;
@@ -67,7 +61,7 @@ namespace MilulaCalc
                 var newText = originalText.Replace(",", "");
                 newText = newText.Replace("$", "");
                 newText = newText.Replace("₪", "");
-                newText = newText.Replace(" ", "");
+                newText = newText.Replace(" ", ""); 
                 _ExpressionBox.Text = newText;
 
                 _ExpressionBox.CaretIndex = originalIndex - (originalText.Length - newText.Length);
@@ -76,14 +70,22 @@ namespace MilulaCalc
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter | e.Key == Key.Tab)
             {
                 string str = _ResultBox.Text;
                 int index = _ResultBox.Text.IndexOf("(");
 
                 if (index >= 0)
                 {
-                    str = str.Substring(0, index);
+                    str = str.Substring(0, index - 1);
+                }
+
+                if (e.Key == Key.Tab)
+                {
+
+                    double d = Double.Parse(str);
+                    d = Math.Round(d, 2, MidpointRounding.AwayFromZero);
+                    str = d.ToString();
                 }
 
                 Clipboard.SetText(str);
@@ -108,5 +110,7 @@ namespace MilulaCalc
                 Visibility = Visibility.Hidden;
             }
         }
+
+
     }
 }
