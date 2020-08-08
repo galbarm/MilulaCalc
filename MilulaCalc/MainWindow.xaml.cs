@@ -56,12 +56,14 @@ namespace MilulaCalc
 
             if (!String.IsNullOrEmpty(originalText))
             {
+                var charsToRemove = new char[] {'[', ']', ' ', '₪', '$', ',', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
                 int originalIndex = _ExpressionBox.CaretIndex;
-
-                var newText = originalText.Replace(",", "");
-                newText = newText.Replace("$", "");
-                newText = newText.Replace("₪", "");
-                newText = newText.Replace(" ", ""); 
+                String newText = originalText;
+                
+                foreach (var c in charsToRemove)
+                {
+                    newText = newText.Replace(c.ToString(), "");
+                }
                 _ExpressionBox.Text = newText;
 
                 _ExpressionBox.CaretIndex = originalIndex - (originalText.Length - newText.Length);
